@@ -34,10 +34,25 @@
 - **Decision:** fallback → FAIL_TYPECHECK, raw message всегда сохраняется в diagnostics
 - **Reason:** §12 фиксирует закрытый список статусов; raw message сохраняется для последующего уточнения классификации (§29)
 
-## D-005 | OPEN | Interactive backend: Pantograph vs собственный REPL-процесс на Lean API?
+## D-005 | 2026-09-10 | Interactive backend: Pantograph vs собственный REPL-процесс на Lean API?
 
 - **Options:** (a) Pantograph как Lean-зависимость; (b) собственный REPL-исполняемый файл на базе `Lean.Elab`/`Lean.Meta`
-- **Evidence:** не собрано
-- **Decision:** отложено до Lean benchmark (§16–§17); batch-линия не зависит от этого решения
-- **Reason:** §3/§61: решение влияет на эксперимент → сначала benchmark, затем выбор; зафиксировать uncertainty
-- **Experiment:** Lean Interactive Benchmark (Stage 1, §16–§17)
+- **Evidence:** собственный REPL реализован и протестирован (20/20); Lean benchmark 2026-09-10:
+  warm interactive verify 0.5–62 ms против batch 620–790 ms (ускорение 10–1200x в зависимости от размера);
+  search throughput ~860 actions/sec на реалистичных последовательностях. Pantograph не требовался:
+  `Lean.Elab.process` + `importModules(loadExts := true)` полностью покрывают потребности Milestone 1.
+- **Decision:** собственный REPL (`Mathesis.ReplMain`, persistent process, JSON-lines over stdio).
+  Импорты загружаются один раз при старте (argv); reset = перезапуск процесса Python-обёрткой.
+- **Reason:** нулевая внешняя зависимость (§60); полный контроль над протоколом; измеренная производительность
+  с большим запасом для rollout budget. Ограничение: command-level гранулярность; tactic-level actions
+  (§33) будут добавлены в Stage 4 поверх той же сессии.
+- **Experiment:** benchmarks/results/lean_benchmark_20260910_*.json
+
+## D-006 | 2026-09-10 | Ограничение архитектуры REPL: один importModules на процесс
+
+- **Options:** (a) повторный `importModules (loadExts := true)` в живом процессе; (b) импорты один раз при старте, reset через перезапуск
+- **Evidence:** повторный вызов в живом процессе приводит к зависанию/некорректной ре-инициализации
+  (документация Lean: небезопасно выполнять initializer code повторно; `withImporting` сбрасывает флаг).
+- **Decision:** (b). Imports фиксируются при создании сессии; `load_environment()` со сменой импортов = новый session; `reset()` = kill + respawn.
+- **Reason:** соответствие §11 (environment фиксирован на experiment) и §64 (crash/respawn — infrastructure event).
+- **Experiment:** tests/test_interactive_backend.py (reset, crash recovery)

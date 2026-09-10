@@ -82,6 +82,7 @@ def test_infrastructure_failure_not_math(session):
 
     if session._proc is not None:
         session._proc.kill()
+        session._proc.wait(timeout=10)
     result = session.submit_action("theorem it_x : 1 = 1 := rfl")
     assert result.failure_class is not None
     assert result.failure_class.value in ("LEAN_FAILURE", "INFRASTRUCTURE_FAILURE")

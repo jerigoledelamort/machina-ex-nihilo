@@ -45,10 +45,20 @@ class SafetyConfig:
 
 
 @dataclass(frozen=True)
+class BenchmarkConfig:
+    sizes: dict[str, int]
+    batch_repeats: int
+    warm_runs: int
+    throughput_actions: int
+    measure_clean_rebuild: bool
+
+
+@dataclass(frozen=True)
 class Config:
     lean: LeanConfig
     batch: BatchConfig
     interactive: InteractiveConfig
+    benchmark: BenchmarkConfig
     trusted_kernel_principles: tuple[str, ...]
     safety: SafetyConfig
     source_path: Path
@@ -73,6 +83,13 @@ class Config:
                     "startup_timeout_seconds": self.interactive.startup_timeout_seconds,
                     "action_timeout_seconds": self.interactive.action_timeout_seconds,
                 },
+            },
+            "benchmark": {
+                "sizes": dict(self.benchmark.sizes),
+                "batch_repeats": self.benchmark.batch_repeats,
+                "warm_runs": self.benchmark.warm_runs,
+                "throughput_actions": self.benchmark.throughput_actions,
+                "measure_clean_rebuild": self.benchmark.measure_clean_rebuild,
             },
             "trusted_kernel_principles": list(self.trusted_kernel_principles),
             "safety": {
@@ -112,6 +129,13 @@ def load_config(path: str | Path | None = None) -> Config:
         interactive=InteractiveConfig(
             startup_timeout_seconds=int(validation["interactive"]["startup_timeout_seconds"]),
             action_timeout_seconds=int(validation["interactive"]["action_timeout_seconds"]),
+        ),
+        benchmark=BenchmarkConfig(
+            sizes={k: int(v) for k, v in data["benchmark"]["sizes"].items()},
+            batch_repeats=int(data["benchmark"]["batch_repeats"]),
+            warm_runs=int(data["benchmark"]["warm_runs"]),
+            throughput_actions=int(data["benchmark"]["throughput_actions"]),
+            measure_clean_rebuild=bool(data["benchmark"]["measure_clean_rebuild"]),
         ),
         trusted_kernel_principles=tuple(validation["trusted_kernel_principles"]),
         safety=SafetyConfig(

@@ -102,6 +102,18 @@ def _parse_serialized_message(m: dict) -> Diagnostic:
     )
 
 
+_IMPORT_LINE_PREFIXES = ("import ",)
+
+
+def _strip_imports(source: str) -> str:
+    """Remove import lines (session environment is fixed at spawn, s11)."""
+    kept = [
+        line for line in source.splitlines()
+        if not line.lstrip().startswith(_IMPORT_LINE_PREFIXES)
+    ]
+    return "\n".join(kept)
+
+
 class InteractiveSession:
     """One persistent Lean REPL process (section 14)."""
 
@@ -222,7 +234,12 @@ class InteractiveSession:
             self.reset()
 
     def submit_action(self, action: str, *, update_env: bool = True) -> ActionResult:
-        """Submit a Lean source fragment; returns the s14 action record."""
+        """Submit a Lean source fragment; returns the s14 action record.
+
+        Import statements are stripped: the session environment is fixed at
+        spawn (section 11); imports belong to session creation, not actions.
+        """
+        action = _strip_imports(action)
         previous_state = self._state
         started = time.perf_counter()
         try:

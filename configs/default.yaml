@@ -47,5 +47,18 @@ safety:
     - "Lean.ofReduceBool"
     - "Lean.ofReduceNat"
 
+benchmark:
+  # §16: batch vs interactive vs warm interactive на Tiny/Medium/Large
+  sizes:
+    tiny: 2      # число теорем в файле
+    medium: 20
+    large: 100
+  batch_repeats: 5        # повторов batch-проверки каждого размера
+  warm_runs: 10           # повторов warm interactive каждого размера
+  # §17: throughput последовательных proof actions (реалистичные последовательности)
+  throughput_actions: 60
+  # Стоимость полного clean rebuild (§16)
+  measure_clean_rebuild: true
+
 logging:
   level: "INFO"

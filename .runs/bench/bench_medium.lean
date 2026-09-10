@@ -1,0 +1,21 @@
+import Mathesis.Basic
+theorem bench_t0 : MTrue := MTrue.intro
+theorem bench_t1 : MAnd MTrue MTrue := MAnd.intro MTrue.intro MTrue.intro
+theorem bench_t2 : MOr MTrue MTrue := MOr.inl MTrue.intro
+theorem bench_t3 : MAnd MTrue (MOr MTrue MTrue) := MAnd.intro MTrue.intro (MOr.inl MTrue.intro)
+theorem bench_t4 : MOr (MAnd MTrue MTrue) MTrue := MOr.inl (MAnd.intro MTrue.intro MTrue.intro)
+theorem bench_t5 : MAnd (MOr MTrue MTrue) (MAnd MTrue MTrue) := MAnd.intro (MOr.inl MTrue.intro) (MAnd.intro MTrue.intro MTrue.intro)
+theorem bench_t6 : MTrue := MTrue.intro
+theorem bench_t7 : MAnd MTrue MTrue := MAnd.intro MTrue.intro MTrue.intro
+theorem bench_t8 : MOr MTrue MTrue := MOr.inl MTrue.intro
+theorem bench_t9 : MAnd MTrue (MOr MTrue MTrue) := by exact MAnd.intro MTrue.intro (MOr.inl MTrue.intro)
+theorem bench_t10 : MOr (MAnd MTrue MTrue) MTrue := MOr.inl (MAnd.intro MTrue.intro MTrue.intro)
+theorem bench_t11 : MAnd (MOr MTrue MTrue) (MAnd MTrue MTrue) := MAnd.intro (MOr.inl MTrue.intro) (MAnd.intro MTrue.intro MTrue.intro)
+theorem bench_t12 : MTrue := MTrue.intro
+theorem bench_t13 : MAnd MTrue MTrue := MAnd.intro MTrue.intro MTrue.intro
+theorem bench_t14 : MOr MTrue MTrue := MOr.inl MTrue.intro
+theorem bench_t15 : MAnd MTrue (MOr MTrue MTrue) := MAnd.intro MTrue.intro (MOr.inl MTrue.intro)
+theorem bench_t16 : MOr (MAnd MTrue MTrue) MTrue := MOr.inl (MAnd.intro MTrue.intro MTrue.intro)
+theorem bench_t17 : MAnd (MOr MTrue MTrue) (MAnd MTrue MTrue) := MAnd.intro (MOr.inl MTrue.intro) (MAnd.intro MTrue.intro MTrue.intro)
+theorem bench_t18 : MTrue := MTrue.intro
+theorem bench_t19 : MAnd MTrue MTrue := by exact MAnd.intro MTrue.intro MTrue.intro

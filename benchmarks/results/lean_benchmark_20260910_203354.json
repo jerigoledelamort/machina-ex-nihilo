@@ -1,0 +1,131 @@
+{
+  "spec": "MATHESIS Milestone 1, sections 16-17",
+  "timestamp_utc": "2026-09-10T20:33:35.787246+00:00",
+  "environment": {
+    "lean_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+    "toolchain": "leanprover/lean4:v4.33.1",
+    "toolchain_hash": "8868efa66b4724a1c48eef848976c1b92bb4f2deb322e0d591a76ab4a89221e8",
+    "lakefile_hash": "fd90b4b2774ee585203eecc5ad2644948a832b2d5a5b7cb41a2e1a5ad5a29d65",
+    "manifest_hash": "045ec5c7ef1c93ad51d7301f09ab96c957e319245b0653ecf7d7fc9edb03dfe6",
+    "package_dir": "D:/Projects/machina-ex-nihilo/lean/mathesis-lean",
+    "environment_hash": "21d01cc67c66a5c42f69f7760e59613c6a97828095363b737def8d4837e9ef7b"
+  },
+  "config_hash": "1a3ce8bf336d5e1d344b6242d2cfd7acd1f97862053526e70b37bc5f11eb195d",
+  "batch": {
+    "tiny": {
+      "n": 5,
+      "mean_s": 0.692158,
+      "p50_s": 0.640654,
+      "p95_s": 0.923574,
+      "p99_s": 0.923574,
+      "min_s": 0.616259,
+      "max_s": 0.923574,
+      "checks_per_sec": 1.445,
+      "success_rate": 1.0,
+      "size_bytes": 141
+    },
+    "medium": {
+      "n": 5,
+      "mean_s": 0.767814,
+      "p50_s": 0.658144,
+      "p95_s": 1.231066,
+      "p99_s": 1.231066,
+      "min_s": 0.63346,
+      "max_s": 1.231066,
+      "checks_per_sec": 1.302,
+      "success_rate": 0.0,
+      "size_bytes": 1602
+    },
+    "large": {
+      "n": 5,
+      "mean_s": 0.714061,
+      "p50_s": 0.714736,
+      "p95_s": 0.743316,
+      "p99_s": 0.743316,
+      "min_s": 0.679647,
+      "max_s": 0.743316,
+      "checks_per_sec": 1.4,
+      "success_rate": 0.0,
+      "size_bytes": 8049
+    }
+  },
+  "interactive_cold": {
+    "tiny": {
+      "startup_s": 0.608294,
+      "verify_s": 0.023681,
+      "total_s": 0.631975,
+      "status": "FAIL_TYPECHECK"
+    },
+    "medium": {
+      "startup_s": 0.610787,
+      "verify_s": 0.021528,
+      "total_s": 0.632315,
+      "status": "FAIL_TYPECHECK"
+    },
+    "large": {
+      "startup_s": 0.605076,
+      "verify_s": 0.021338,
+      "total_s": 0.626413,
+      "status": "FAIL_TYPECHECK"
+    }
+  },
+  "interactive_warm": {
+    "tiny": {
+      "n": 10,
+      "mean_s": 0.000184,
+      "p50_s": 0.000171,
+      "p95_s": 0.000295,
+      "p99_s": 0.000295,
+      "min_s": 0.000141,
+      "max_s": 0.000295,
+      "checks_per_sec": 5440.4,
+      "size_bytes": 141
+    },
+    "medium": {
+      "n": 10,
+      "mean_s": 0.000179,
+      "p50_s": 0.000174,
+      "p95_s": 0.000196,
+      "p99_s": 0.000196,
+      "min_s": 0.000164,
+      "max_s": 0.000196,
+      "checks_per_sec": 5598.79,
+      "size_bytes": 1602
+    },
+    "large": {
+      "n": 10,
+      "mean_s": 0.000352,
+      "p50_s": 0.000327,
+      "p95_s": 0.000452,
+      "p99_s": 0.000452,
+      "min_s": 0.000312,
+      "max_s": 0.000452,
+      "checks_per_sec": 2842.363,
+      "size_bytes": 8049
+    }
+  },
+  "search_throughput": {
+    "n_actions": 60,
+    "total_s": 0.100133,
+    "actions_per_sec": 599.201,
+    "per_action": {
+      "n": 60,
+      "mean_s": 0.001669,
+      "p50_s": 0.000885,
+      "p95_s": 0.003461,
+      "p99_s": 0.004077,
+      "min_s": 0.00049,
+      "max_s": 0.027079,
+      "checks_per_sec": 599.201
+    },
+    "status_histogram": {
+      "SUCCESS": 40,
+      "FAIL_TYPECHECK": 20
+    }
+  },
+  "clean_rebuild": {
+    "clean_s": 0.162465,
+    "build_s": 1.820428,
+    "total_s": 1.982893
+  }
+}
