@@ -1,0 +1,1 @@
+theorem s2_m47 : MAnd MTrue MAnd MOr MTrue MTrue MAnd MTrue MTrue := (MAnd.intro (MAnd.intro (MOr.inr MTrue.intro) (MAnd.intro MTrue.intro MTrue.intro)) MTrue.intro)

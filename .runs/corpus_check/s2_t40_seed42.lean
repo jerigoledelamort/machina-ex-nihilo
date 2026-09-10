@@ -1,0 +1,1 @@
+theorem s2_t40 : MAnd MTrue MTrue := (MAnd.intro MTrue.intro MTrue.intro)

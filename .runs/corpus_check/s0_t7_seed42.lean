@@ -1,0 +1,1 @@
+theorem s0_t7 : MOr MFalse MTrue := MAnd.intro MTrue.intro MTrue.intro

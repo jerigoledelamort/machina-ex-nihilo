@@ -1,0 +1,1 @@
+theorem s1_t15 : MOr MOr MTrue MTrue MOr MFalse MTrue := (MOr.inl (MOr.inl MTrue.intro))

@@ -1,0 +1,1 @@
+theorem s1_t17 : MAnd MTrue MOr MTrue MTrue := (MAnd.intro MTrue.intro MTrue.intro)
