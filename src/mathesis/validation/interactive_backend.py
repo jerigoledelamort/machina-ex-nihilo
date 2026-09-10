@@ -175,7 +175,9 @@ class InteractiveSession:
             encoding="utf-8",
         )
         self._queue = queue.Queue()
-        self._reader = threading.Thread(target=self._read_loop, daemon=True)
+        proc = self._proc
+        q = self._queue
+        self._reader = threading.Thread(target=self._read_loop, args=(proc, q), daemon=True)
         self._reader.start()
         ready = self._recv(self._cfg.interactive.startup_timeout_seconds)
         if ready is None:
@@ -189,11 +191,16 @@ class InteractiveSession:
             raise BackendCrash(f"REPL startup failed: {ready['error']}", FailureClass.LEAN_FAILURE)
         self._state = ProofState(status="ready")
 
-    def _read_loop(self) -> None:
-        assert self._proc is not None and self._proc.stdout is not None
-        for line in self._proc.stdout:
-            self._queue.put(line.strip())
-        self._queue.put(None)  # EOF sentinel
+    def _read_loop(self, proc: subprocess.Popen, q: queue.Queue) -> None:
+        """Read lines into the session-local queue.
+
+        The queue is captured as an argument: a stale reader from a previous
+        session must never write into the new session's queue.
+        """
+        assert proc.stdout is not None
+        for line in proc.stdout:
+            q.put(line.strip())
+        q.put(None)  # EOF sentinel
 
     def _recv(self, timeout: float) -> dict | None:
         try:

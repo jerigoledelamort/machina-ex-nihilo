@@ -1,0 +1,29 @@
+{
+  "spec": "MATHESIS Milestone 1, sections 28-30",
+  "timestamp_utc": "2026-09-10T20:51:43.133133+00:00",
+  "corpus": "D:\\Projects\\machina-ex-nihilo\\data\\corpus_tokenizer.jsonl",
+  "n_declarations": 1006,
+  "n_proofs": 1006,
+  "n_errors": 0,
+  "bpe": {
+    "vocab_size": 8000,
+    "train_seconds": 0.152,
+    "tokens_per_declaration": 41.009,
+    "tokens_per_proof": 18.419,
+    "tokens_per_error": 0.0,
+    "compression_ratio": 3.173,
+    "inference_chars_per_sec": 3143525.1
+  },
+  "lean_aware": {
+    "vocab_size": 89,
+    "setup_seconds": 0.000365,
+    "tokens_per_declaration": 46.394,
+    "tokens_per_proof": 13.879,
+    "tokens_per_error": 0.0,
+    "compression_ratio": 2.805,
+    "inference_chars_per_sec": 5593530.6
+  },
+  "compression_improvement_pct": -11.6,
+  "decision": "bpe",
+  "criterion": "lean_aware requires >= 20% compression ratio improvement"
+}

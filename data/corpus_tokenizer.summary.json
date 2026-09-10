@@ -1,0 +1,58 @@
+{
+  "timestamp_utc": "2026-09-10T20:50:38.948087+00:00",
+  "generator_version": "0.2.0",
+  "seed": 1234,
+  "environment_hash": "8f87b95ecabe55a9cb714a185daf7e63df82c4f01dbdfbbcb6fec162b4f46656",
+  "n_samples": 1006,
+  "generator_audit": {
+    "ok": true,
+    "checks": {
+      "files_audited": [
+        "generator.py",
+        "grammar.py"
+      ]
+    },
+    "violations": []
+  },
+  "corpus_audit": {
+    "ok": true,
+    "checks": {
+      "n_samples": 1006,
+      "generator_version": "0.2.0",
+      "seed": 1234,
+      "level_counts": {
+        "S0": 56,
+        "S1": 400,
+        "S2": 550
+      },
+      "mutation_counts": {
+        "operator_replacement": 68,
+        "argument_permutation": 82
+      },
+      "imports_seen": [],
+      "all_imports_allowed": true
+    },
+    "violations": []
+  },
+  "leakage_audit": {
+    "ok": true,
+    "exact_duplicates": 0,
+    "normalized_duplicates": 0,
+    "near_duplicates": 0,
+    "cross_split_structure_overlap": {
+      "TEST_TRAIN": 0,
+      "TEST_VALIDATION": 0
+    },
+    "details": []
+  },
+  "output": "D:\\Projects\\machina-ex-nihilo\\data\\corpus_tokenizer.jsonl",
+  "split_counts": {
+    "TRAIN": 804,
+    "TEST": 102,
+    "VALIDATION": 100
+  },
+  "verdict_counts": {
+    "rejected_by_lean": 575,
+    "verified_by_lean": 431
+  }
+}
