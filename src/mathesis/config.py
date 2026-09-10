@@ -32,7 +32,8 @@ class BatchConfig:
 
 @dataclass(frozen=True)
 class InteractiveConfig:
-    timeout_seconds: int
+    startup_timeout_seconds: int
+    action_timeout_seconds: int
 
 
 @dataclass(frozen=True)
@@ -68,7 +69,10 @@ class Config:
                     "timeout_seconds": self.batch.timeout_seconds,
                     "max_output_bytes": self.batch.max_output_bytes,
                 },
-                "interactive": {"timeout_seconds": self.interactive.timeout_seconds},
+                "interactive": {
+                    "startup_timeout_seconds": self.interactive.startup_timeout_seconds,
+                    "action_timeout_seconds": self.interactive.action_timeout_seconds,
+                },
             },
             "trusted_kernel_principles": list(self.trusted_kernel_principles),
             "safety": {
@@ -106,7 +110,8 @@ def load_config(path: str | Path | None = None) -> Config:
             max_output_bytes=int(validation["batch"]["max_output_bytes"]),
         ),
         interactive=InteractiveConfig(
-            timeout_seconds=int(validation["interactive"]["timeout_seconds"]),
+            startup_timeout_seconds=int(validation["interactive"]["startup_timeout_seconds"]),
+            action_timeout_seconds=int(validation["interactive"]["action_timeout_seconds"]),
         ),
         trusted_kernel_principles=tuple(validation["trusted_kernel_principles"]),
         safety=SafetyConfig(

@@ -12,7 +12,10 @@ validation:
     timeout_seconds: 60
     max_output_bytes: 1048576
   interactive:
-    timeout_seconds: 30
+    # Таймаут старта REPL-процесса (загрузка импортов)
+    startup_timeout_seconds: 120
+    # Таймаут одной action/verify
+    action_timeout_seconds: 30
   # Доверенный набор kernel principles (§9). Всё остальное в proof pipeline запрещено.
   trusted_kernel_principles:
     - "Classical.choice"

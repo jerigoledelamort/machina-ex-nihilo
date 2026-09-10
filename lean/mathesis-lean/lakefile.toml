@@ -6,3 +6,9 @@ defaultTargets = ["Mathesis"]
 # в том числе Mathlib (§60). Расширение environment во время эксперимента запрещено.
 [[lean_lib]]
 name = "Mathesis"
+
+[[lean_exe]]
+name = "mathesis_repl"
+root = "Mathesis.ReplMain"
+supportInterpreter = true
+
