@@ -1,0 +1,8 @@
+name = "mathesis_lean"
+version = "0.1.0"
+defaultTargets = ["Mathesis"]
+
+# Минимальный environment Milestone 1 (§11): никаких внешних зависимостей,
+# в том числе Mathlib (§60). Расширение environment во время эксперимента запрещено.
+[[lean_lib]]
+name = "Mathesis"

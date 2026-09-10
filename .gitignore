@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+.tools/
+.agent/
+lean/mathesis-lean/.lake/
+lean/mathesis-lean/lake-manifest.json
+dist/
+*.egg-info/
+.pytest_cache/

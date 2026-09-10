@@ -1,0 +1,48 @@
+# Mathesis Milestone 1 — versioned configuration (§62)
+# Все experiment-dependent параметры живут здесь. Скрытые magic numbers запрещены.
+
+lean:
+  toolchain: "leanprover/lean4:v4.33.1"
+  elan_home: ".tools/elan"
+  package_dir: "lean/mathesis-lean"
+
+validation:
+  batch:
+    # Timeout для одиночной batch-проверки (§12: TIMEOUT status)
+    timeout_seconds: 60
+    max_output_bytes: 1048576
+  interactive:
+    timeout_seconds: 30
+  # Доверенный набор kernel principles (§9). Всё остальное в proof pipeline запрещено.
+  trusted_kernel_principles:
+    - "Classical.choice"
+    - "propext"
+    - "Quot.sound"
+
+safety:
+  # Токены, запрещённые в proof pipeline (§9, §65)
+  forbidden_tokens:
+    - "sorry"
+    - "admit"
+    - "unsafe"
+    - "native_decide"
+  # Ключевые слова/декларации, запрещённые в обычном proof pipeline (§9, §10)
+  forbidden_declarations:
+    - "axiom"
+    - "opaque"
+    - "implemented_by"
+    - "extern"
+    - "macro_rules"
+    - "syntax"
+    - "elab"
+    - "set_option"
+  # Разрешённые импорты: только минимальный environment (§11)
+  allowed_import_prefixes:
+    - "Mathesis"
+  # Паттерны ядра, использование которых должно протоколироваться
+  restricted_patterns:
+    - "Lean.ofReduceBool"
+    - "Lean.ofReduceNat"
+
+logging:
+  level: "INFO"
